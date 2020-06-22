@@ -29,7 +29,7 @@ docker run --rm -it -v bitcoinvault-db:/opt/bvault varnav/bitcoinvault-node
 Will bind RPC to port 38332
 
 ```bash
-docker run -d --restart=unless-stopped --name bitcoinvault -p 8332:38332 -v bitcoinvault-db:/opt/bvault varnav/bitcoinvault-node -rpcallowip='10.0.0.0/8' -rpcbind='0.0.0.0' -rpcauth='rpcauth=admin:ea8ab83e1ec635249a3aa8d8285f1581$d57b887e0a7e71bd205fc5d5cdf51844206389ce6a66e3fe502702a87beb5b97'
+docker run -d --restart=unless-stopped --name bitcoinvault -p 48332:48332 -v bitcoinvault-db:/opt/bvault varnav/bitcoinvault-node -rpcallowip='10.0.0.0/8' -rpcbind='0.0.0.0:48332' -rpcauth='admin:ea8ab83e1ec635249a3aa8d8285f1581$d57b887e0a7e71bd205fc5d5cdf51844206389ce6a66e3fe502702a87beb5b97'
 ```
 
 #### Test RPC

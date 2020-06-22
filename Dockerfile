@@ -1,5 +1,5 @@
 #FROM ubuntu:20.04 as builder
-FROM gcc:latest
+FROM gcc:10
 
 LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
 LABEL Description="Docker image for Bitcoin Vault node"
