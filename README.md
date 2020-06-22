@@ -14,17 +14,27 @@ cd bitcoinvault-node-docker
 docker build -t varnav/bitcoinvault-node .
 ```
 
+#### RPCauth parameter
+
+Use [this script](https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpcauth.py) to generate password.
+
 #### Run interactively
 
 ```bash
-docker run --rm -it -v bitcoinvault-db:/opt/bvault -e "RPC_SERVER=1" varnav/bitcoinvault-node
+docker run --rm -it -v bitcoinvault-db:/opt/bvault varnav/bitcoinvault-node
 ```
 
 #### Run as daemon
 
+Will bind RPC to port 38332
+
 ```bash
-docker run -d --restart=unless-stopped --name bitcoinvault -v bitcoinvault-db:/opt/bvault -e "RPC_SERVER=1" varnav/bitcoinvault-node
+docker run -d --restart=unless-stopped --name bitcoinvault -p 8332:38332 -v bitcoinvault-db:/opt/bvault varnav/bitcoinvault-node -rpcallowip='10.0.0.0/8' -rpcbind='0.0.0.0' -rpcauth='rpcauth=admin:ea8ab83e1ec635249a3aa8d8285f1581$d57b887e0a7e71bd205fc5d5cdf51844206389ce6a66e3fe502702a87beb5b97'
 ```
+
+#### Test RPC
+
+curl --data-binary '{"jsonrpc":"1.0","id":"1","method":"getnetworkinfo","params":[]}' http://foo:qDDZdeQ5vw9XXFeVnXT4PZ--tGN2xNjjR4nrtyszZx0=@127.0.0.1:38332/
 
 #### Clean all
 
